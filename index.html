@@ -1,94 +1,428 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <title>Мой простой лендинг</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-        }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 0;
-            text-align: center;
-        }
-        main {
-            width: 80%;
-            margin: auto;
-            padding: 20px;
-        }
-        main h2 {
-            color: #333;
-        }
-        main p {
-            color: #666;
-        }
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Займ на карту | finfive</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    }
+    body {
+      background: #f8faff;
+      color: #0b1a33;
+      line-height: 1.5;
+      padding: 20px 16px 40px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 24px 20px;
+      box-shadow: 0 8px 24px rgba(0,20,50,0.06);
+      margin-bottom: 20px;
+      transition: 0.2s;
+    }
+    h1, h2, h3 {
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    h1 {
+      font-size: 28px;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      background: linear-gradient(145deg, #0b1a33 0%, #1e3b6b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .slider-block {
+      background: #f2f6fe;
+      border-radius: 40px;
+      padding: 20px 16px 24px;
+      margin: 16px 0 12px;
+    }
+    .range-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      font-weight: 500;
+      color: #1e3b6b;
+      margin-top: 6px;
+    }
+    input[type=range] {
+      width: 100%;
+      height: 6px;
+      background: #cbd8f0;
+      border-radius: 10px;
+      -webkit-appearance: none;
+      appearance: none;
+      margin: 16px 0 6px;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      background: #1e3b6b;
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(0,40,100,0.3);
+      cursor: pointer;
+      border: 2px solid white;
+    }
+    .sum-display {
+      font-size: 36px;
+      font-weight: 700;
+      color: #0b1a33;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .sum-display small {
+      font-size: 18px;
+      font-weight: 400;
+      color: #4a5f7a;
+    }
+    .total-return {
+      background: #e9eff9;
+      border-radius: 40px;
+      padding: 10px 18px;
+      display: inline-block;
+      font-weight: 600;
+      font-size: 18px;
+      margin: 12px 0 8px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #1e3b6b;
+      color: white;
+      font-weight: 600;
+      font-size: 18px;
+      padding: 14px 28px;
+      border-radius: 60px;
+      border: none;
+      width: 100%;
+      cursor: pointer;
+      text-decoration: none;
+      transition: 0.2s;
+      box-shadow: 0 6px 14px rgba(30,59,107,0.25);
+      letter-spacing: 0.3px;
+    }
+    .btn:active {
+      transform: scale(0.97);
+      box-shadow: 0 3px 8px rgba(30,59,107,0.3);
+    }
+    .btn-secondary {
+      background: #eef3fc;
+      color: #1e3b6b;
+      box-shadow: none;
+      font-weight: 500;
+    }
+    .feature-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin: 16px 0 8px;
+    }
+    .feature-item {
+      flex: 1 1 140px;
+      background: #f2f6fe;
+      border-radius: 24px;
+      padding: 16px 12px;
+      text-align: center;
+      font-weight: 500;
+      font-size: 14px;
+    }
+    .feature-item span {
+      display: block;
+      font-size: 26px;
+      margin-bottom: 6px;
+    }
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin: 16px 0 8px;
+    }
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      background: #fafcff;
+      padding: 14px 16px;
+      border-radius: 24px;
+      border-left: 4px solid #1e3b6b;
+    }
+    .step-num {
+      background: #1e3b6b;
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .step-content strong {
+      display: block;
+      font-size: 17px;
+    }
+    .step-content p {
+      font-size: 15px;
+      color: #2c405e;
+    }
+    .pay-methods {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      justify-content: center;
+      background: #f2f6fe;
+      border-radius: 60px;
+      padding: 14px 18px;
+      margin: 16px 0 4px;
+      font-weight: 500;
+      font-size: 15px;
+    }
+    .pay-methods span {
+      opacity: 0.8;
+    }
+    .faq-item {
+      border-bottom: 1px solid #e3eaf5;
+      padding: 14px 0;
+    }
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+    .faq-question {
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      cursor: default;
+    }
+    .disclaimer {
+      font-size: 13px;
+      color: #4e6582;
+      background: #f2f6fe;
+      padding: 18px 16px;
+      border-radius: 24px;
+      margin: 20px 0 12px;
+      line-height: 1.6;
+    }
+    .disclaimer a {
+      color: #1e3b6b;
+      word-break: break-word;
+      text-decoration: none;
+      border-bottom: 1px dotted #9bb1d0;
+    }
+    .footer-form {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 18px 16px 20px;
+      margin-top: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      border: 1px solid #edf2fa;
+    }
+    .footer-form h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #0b1a33;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .footer-form h4 small {
+      font-weight: 400;
+      font-size: 14px;
+      color: #5a6f8a;
+    }
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+    .form-row input {
+      flex: 1 1 160px;
+      padding: 12px 14px;
+      border: 1px solid #dce3ef;
+      border-radius: 40px;
+      font-size: 15px;
+      background: #fafcff;
+      outline: none;
+      transition: 0.2s;
+    }
+    .form-row input:focus {
+      border-color: #1e3b6b;
+      background: white;
+    }
+    .form-row .btn-small {
+      flex: 0 1 auto;
+      background: #1e3b6b;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 4px 10px rgba(30,59,107,0.15);
+    }
+    .form-row .btn-small:active {
+      transform: scale(0.96);
+    }
+    .form-note {
+      font-size: 12px;
+      color: #6a7f9a;
+      margin-top: 8px;
+      text-align: right;
+    }
+    .text-muted {
+      color: #4f6887;
+      font-size: 14px;
+    }
+    .mt-1 { margin-top: 8px; }
+    .mb-1 { margin-bottom: 8px; }
+    .text-center { text-align: center; }
+    .flex { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Сайт</h1>
-    </header>
-    <div align="center">
-    <section class="feedback">
-<form class="feedback-form">
-<h2 class="feedback-form__title">Связаться с нами</h2>
-<div class="feedback-form__group"><input class="feedback-form__input" type="text" id="name" name="name" required placeholder="Имя">
-<input class="feedback-form__input" type="email" id="email" name="email" required placeholder="E-mail">
-<textarea class="feedback-forminput feedback-formtextarea" id="message" name="message" required placeholder="Введите сообщение"></textarea>
-<input class="feedback-form__submit" type="submit" value="ОТПРАВИТЬ">
-</div>
-</form>
-</section>
-        </div>
-<div align='center'>
-<button onclick="location.href='https://soulbot.ru'" class="button">Перейти на сайт</button>
 
-<style>
-.button {
-    color: white;
-    background-color: #007BFF;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-}
-.button:hover {
-    background-color: #0056b3;
-}
-</style>
-</div>
-    <main>
-        <h2>О нас</h2>
-        <p>Здесь вы можете узнать много интересного о нашей организации.</p>
+  <!-- главный блок -->
+  <div class="card">
+    <h1>Получите заём на карту не выходя из дома!</h1>
 
-        <h2>Наши услуги</h2>
-        <p>Мы предлагаем широкий спектр услуг, которые помогут вам в реализации ваших планов.</p>
+    <!-- слайдер -->
+    <div class="slider-block">
+      <div class="flex" style="justify-content: space-between;">
+        <span class="sum-display"><span id="amountDisplay">10 000</span> <small>₽</small></span>
+        <span style="font-weight: 500; background: white; padding: 4px 16px; border-radius: 40px;">3 000 – 30 000 ₽</span>
+      </div>
+      <input type="range" id="loanSlider" min="3000" max="30000" value="10000" step="500">
+      <div class="range-labels">
+        <span>3 000 ₽</span>
+        <span>30 000 ₽</span>
+      </div>
+      <div class="total-return">Итог к возврату: <span id="totalReturn">10 000</span> ₽</div>
+    </div>
 
-        <h2>Контакты</h2>
-        <p>Свяжитесь с нами, и мы обязательно ответим на все ваши вопросы.</p>
-    </main>
+    <!-- кнопка-переход (ведет на рефералку) -->
+    <a href="https://finfive.ru/?utm_source=yamk" class="btn" target="_blank" rel="noopener">Оформить займ</a>
 
-    <footer>
-        <p>2023 &copy; Все права защищены</p>
-    </footer>
+    <!-- особенности -->
+    <div class="feature-grid">
+      <div class="feature-item"><span>💳</span> Переводим сразу на карту<br><span class="text-muted" style="font-weight:400;">Деньги через 15 минут</span></div>
+      <div class="feature-item"><span>📄</span> Простое оформление<br><span class="text-muted" style="font-weight:400;">Паспорт и 3 минуты</span></div>
+    </div>
+  </div>
+
+  <!-- как получить -->
+  <div class="card">
+    <h2 style="font-size: 22px; margin-bottom: 12px;">Займ на комфортных условиях — теперь это легко!</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content"><strong>Заполните заявку</strong><p>Простая форма, нужен только паспорт. Среднее время заполнения: 3 минуты</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content"><strong>Получите одобрение</strong><p>В течение 15 минут мы проверим все ваши данные для одобрения займа</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content"><strong>Деньги у вас на карте</strong><p>После одобрения мы сразу отправляем деньги вам на банковскую карту</p></div>
+      </div>
+    </div>
+
+    <!-- способы погашения -->
+    <div class="pay-methods">
+      <span>🏦 В любом отделении банка</span>
+      <span>💳 Банковской картой</span>
+      <span>📱 Предложения</span>
+      <span>💰 Займы по суммам</span>
+    </div>
+
+    <!-- кнопка повторно (рефералка) -->
+    <a href="https://finfive.ru/?utm_source=yamk" class="btn btn-secondary" style="margin-top: 18px;" target="_blank" rel="noopener">Перейти к оформлению</a>
+  </div>
+
+  <!-- важная информация / оферта -->
+  <div class="disclaimer">
+    <strong style="display: block; margin-bottom: 8px;">Внимание!</strong>
+    Переход к оформлению заявки на заключение договора потребительского займа означает, что Вы ознакомлены:<br>
+    О возможности:
+    <ul style="margin: 8px 0 8px 18px; list-style: disc; color: #2f4a6e;">
+      <li>присоединиться к Пользовательскому соглашению – оферте по Программе для ЭВМ «ВитаМед» (Telegram-бот, свидетельство № 2024612050) путем оплаты сертификата с лицензионным ключом доступа к Telegram-бот «ВитаМед». Количество запросов клиента к боту зависит от выбранного Тарифа, <a href="https://cashmed.ru" target="_blank">https://cashmed.ru</a></li>
+      <li>присоединиться к Программе для ЭВМ РЗ № 22120 от 04.04.2024 (сведения реестра Российского ПО) путем оплаты по Тарифу сертификата с лицензионным ключом (доступом), <a href="https://b-concierge.online" target="_blank">https://b-concierge.online</a></li>
+      <li>присоединиться к Программе для ЭВМ «Звёздный Оракул» (сведения реестра Российского ПО) путем оплаты по Тарифу сертификата с лицензионным ключом (доступом), <a href="https://staroracle.ru/" target="_blank">https://staroracle.ru/</a> или Telegram - t.me/Soracle_Bot</li>
+      <li>присоединиться к Пользовательскому соглашению – оферте по Программе для ЭВМ «Туду» (сведения реестра Российского ПО, Протокол) по Тарифам на услугу путем оплаты сертификата с лицензионным ключом доступа к Программе для ЭВМ «Туду».</li>
+      <li>присоединиться к Пользовательскому соглашению – оферте по Программе для ЭВМ «Трекер калорий» (сведения реестра Российского ПО, Протокол) по Тарифам на услугу путем оплаты сертификата с лицензионным ключом доступа к Программе для ЭВМ «Трекер калорий».</li>
+    </ul>
+    <p style="margin: 8px 0;">Заемщик вправе расторгнуть договор на предоставление доступа к Программе для ЭВМ и вернуть денежные средства в течении тридцати календарных дней после заключения договора на оказание дополнительной услуги</p>
+    <p style="margin: 8px 0;">Для Программы ЭВМ «ВитаМед» по вопросу возврата денежных средств необходимо обратиться в соответствующий чат на сайте <a href="https://cashmed.ru/" target="_blank">https://cashmed.ru/</a><br>
+    Для Программы РЗ № 22120 от 04.04.2024 по вопросу возврата денежных средств необходимо обратиться в соответствующий чат на сайте <a href="https://b-concierge.online/" target="_blank">https://b-concierge.online/</a><br>
+    Для Программы ЭВМ «Звёздный Оракул» по вопросу возврата денежных средств необходимо обратиться в соответствующий чат на сайте <a href="https://staroracle.ru/" target="_blank">https://staroracle.ru/</a><br>
+    Для Программы ЭВМ «Туду» более подробная информация о предоставляемых услугах располагается на сайте партнеров - <a href="https://tododolist.ru/" target="_blank">https://tododolist.ru/</a><br>
+    По вопросу расторжения договора о предоставлении прав доступа к ПО и возврата денежных средств обращайтесь на адрес электронной почты: vozvrat@skyzaem.ru, по ПО «Туду» - на адрес электронной почты: vozvrat@tododolist.ru</p>
+    <p>— По вопросу отказа от предоставленных прав доступа к Программе для ЭВМ «Трекер калорий» и возврата денежных средств обращайтесь на адрес электронной почты: cancel@mainfit.ru</p>
+  </div>
+
+  <!-- Вопрос-ответ -->
+  <div class="card">
+    <h3 style="font-size: 20px; margin-bottom: 8px;">Вопрос - ответ</h3>
+    <div class="faq-item"><div class="faq-question">01 Досрочное погашение? <span>+</span></div></div>
+    <div class="faq-item"><div class="faq-question">02 Забыли пароль при регистрации? <span>+</span></div></div>
+    <div class="faq-item"><div class="faq-question">03 Кто может взять микрозайм? <span>+</span></div></div>
+    <div class="faq-item" style="border-bottom: none;"><div class="faq-question">04 <span style="opacity:0.4;">—</span></div></div>
+  </div>
+
+  <!-- МАЛЕНЬКАЯ ФОРМА ОБРАТНОЙ СВЯЗИ (неброская) -->
+  <div class="footer-form">
+    <h4>📬 Обратная связь <small>— ответим в течение дня</small></h4>
+    <form action="#" method="post" onsubmit="alert('Форма обратной связи (демо). Спасибо!'); return false;">
+      <div class="form-row">
+        <input type="text" placeholder="Ваше имя" required>
+        <input type="email" placeholder="Email или телефон" required>
+        <button type="submit" class="btn-small">Отправить</button>
+      </div>
+      <div class="form-note">✉️ Небольшая форма, просто чтобы быть</div>
+    </form>
+  </div>
+
+  <div style="text-align: center; font-size: 12px; color: #8296b2; margin-top: 24px; border-top: 1px solid #e6edf6; padding-top: 20px;">
+    © finfive • реферальная ссылка <a href="https://finfive.ru/?utm_source=yamk" target="_blank" style="color: #1e3b6b; text-decoration: none;">finfive.ru/?utm_source=yamk</a>
+  </div>
+
+  <script>
+    (function() {
+      const slider = document.getElementById('loanSlider');
+      const amountDisplay = document.getElementById('amountDisplay');
+      const totalReturn = document.getElementById('totalReturn');
+
+      function updateAmount() {
+        const val = parseInt(slider.value, 10);
+        const formatted = val.toLocaleString('ru-RU');
+        amountDisplay.textContent = formatted;
+        // Итог к возврату = ровно сумма займа (без переплат)
+        totalReturn.textContent = formatted;
+      }
+
+      slider.addEventListener('input', updateAmount);
+      updateAmount();
+    })();
+  </script>
+
 </body>
 </html>
